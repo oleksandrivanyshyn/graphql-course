@@ -1,7 +1,8 @@
 import { Prisma } from 'prisma-binding';
+import path from 'path';
 
 const prisma = new Prisma({
-  typeDefs: 'src/generated/prisma.graphql',
+  typeDefs: path.join(__dirname, 'generated/prisma.graphql'),
   endpoint: 'http://localhost:4466',
 });
 

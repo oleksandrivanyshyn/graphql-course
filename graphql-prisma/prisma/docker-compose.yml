@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  prisma-db:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: graphql_course
+    ports:
+      - "5433:5432"
+
+  prisma:
+    image: prismagraphql/prisma:1.12
+    restart: always
+    ports:
+      - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: prisma-db
+            port: '5432'
+            database: graphql_course
+            user: prisma
+            password: mysecretpassword
+            migrations: true
+    depends_on:
+      - prisma-db

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src --ext js,graphql --exec \"babel src -d dist && mkdir -p dist/generated && cp -r src/generated/. dist/generated/ 2>/dev/null || true && node dist/index.js\"",
+    "start": "nodemon --watch src --ext js,graphql --exec \"babel src -d dist && mkdir -p dist/generated && cp -r src/generated/. dist/generated/ 2>/dev/null || true && node -r babel-polyfill dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "get-schema": "graphql get-schema -p prisma"
   },

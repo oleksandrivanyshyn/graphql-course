@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node",
+    "start": "nodemon --watch src --ext js,graphql --exec \"babel src -d dist && node dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,9 +13,10 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "graphql-yoga": "^1.14.10",
-    "uuid": "^14.0.1"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "nodemon": "^1.17.5",
     "prettier": "^3.9.5"
   }

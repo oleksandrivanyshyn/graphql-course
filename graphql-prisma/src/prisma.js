@@ -1,10 +1,12 @@
 import { Prisma } from 'prisma-binding';
+import { fragmentReplacements } from './resolvers';
 import path from 'path';
 
 const prisma = new Prisma({
   typeDefs: path.join(__dirname, 'generated/prisma.graphql'),
   endpoint: 'http://localhost:4466',
   secret: 'thisismysupersecrettext',
+  fragmentReplacements,
 });
 export { prisma as default };
 // prisma.query prisma.mutation prisma.subscription prisma.exists

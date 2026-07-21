@@ -4,8 +4,8 @@ import path from 'path';
 
 const prisma = new Prisma({
   typeDefs: path.join(__dirname, 'generated/prisma.graphql'),
-  endpoint: 'http://localhost:4466',
-  secret: 'thisismysupersecrettext',
+  endpoint: process.env.PRISMA_ENDPOINT,
+  secret: process.env.PRISMA_SECRET,
   fragmentReplacements,
 });
 export { prisma as default };

@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src --ext js,graphql --exec \"babel src -d dist && mkdir -p dist/generated && cp -r src/generated/. dist/generated/ 2>/dev/null || true && node -r babel-polyfill dist/index.js\"",
+    "start": "env-cmd ./config/dev.env nodemon --watch src --ext js,graphql --exec \"babel src -d dist && mkdir -p dist/generated && cp -r src/generated/. dist/generated/ 2>/dev/null || true && node -r babel-polyfill dist/index.js\"",
+    "get-schema": "graphql get-schema -p prisma --dotenv ./config/dev.env",
+    "format": "prettier --write \"src/**/*.{js,graphql,json}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "get-schema": "graphql get-schema -p prisma"
+    "prisma-deploy": "env-cmd ./config/dev.env npx prisma1 deploy"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "^2.4.3",
+    "env-cmd": "^8.0.2",
     "graphql-cli": "^2.16.4",
     "graphql-yoga": "^1.14.10",
     "jsonwebtoken": "^8.3.0",
